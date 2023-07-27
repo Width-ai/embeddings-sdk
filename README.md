@@ -2,7 +2,7 @@
 Python sdk to interface with Width.Ai's Embeddings SaaS
 
 
-## Example
+## Example Usage
 ```python
 from embeddings_sdk import WidthEmbeddingsSession
 session = WidthEmbeddingsSession(customer_id="...", api_key="...", url="https://embeddings.width.ai")
