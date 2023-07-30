@@ -18,7 +18,7 @@ model_info = session.get_models()['models'][0]
 finetune_info = session.finetune(
     model_id=model_info.get("id"),
     datasets=[{
-        "loss": "TripletLoss", 
+        "loss": "TripletLoss",
         "loss_params": {
             "distance": "cosine",
             "margin": 0.5
@@ -58,28 +58,26 @@ finetune_info = session.finetune(
             {"texts": ["cheese", "mozzarella cheese", "chocolate"]},
             {"texts": ["sushi", "sashimi", "tempura"]},
             {"texts": ["fried rice", "steamed rice", "fried noodles"]}
-       ]
+        ]
     }]
 )
 
 # check on the finetuning job status
-model_status = session.check_status(finetune_id=finetune_info.get("finetune_id"))
-while model_status.get("status", "done") != "done":
-    print(model_status)
-    time.sleep(2)
-    model_status = session.check_status(finetune_id=finetune_info.get("finetune_id"))
+assert session.follow_finetuning(finetune_info.get("finetune_id")), "Finetuning failed"
 
 # get all model versions
 model_versions = session.get_model_versions()
 
 # model is done training, lets get some embeddings
-embeddings = session.inference(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"), input_texts=["oatmeal cookie", "bagel", "fried chicken"])
+embeddings = session.inference(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"),
+                               input_texts=["oatmeal cookie", "bagel", "fried chicken"])
 
 # if you want to keep the resource that is hosting your model hot, you can use this function
 session.keep_alive(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
 
 # your inferences will have a shorter delay between the call and response since you don't have to wait for the underlying resources to spin up
-embeddings = session.inference(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"), input_texts=["shrimp poboy", "candy cane"])
+embeddings = session.inference(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"),
+                               input_texts=["shrimp poboy", "candy cane"])
 
 # and then when you are finished running your inferences make sure to tear down your resources
 session.tear_down(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
