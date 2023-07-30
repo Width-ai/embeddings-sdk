@@ -63,7 +63,7 @@ finetune_info = session.finetune(
 )
 
 # check on the finetuning job status
-assert session.follow_finetuning(finetune_info.get("finetune_id")), "Finetuning failed"
+assert session.monitor_finetuning(finetune_info.get("finetune_id")), "Finetuning failed"
 
 # get all model versions
 model_versions = session.get_model_versions()

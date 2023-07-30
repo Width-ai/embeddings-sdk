@@ -2,7 +2,6 @@ import json
 import requests
 import time
 from typing import List, Any
-import logging
 from embeddings_sdk.domain import exceptions, models
 from embeddings_sdk.utils.utils import setup_logger
 
@@ -212,13 +211,13 @@ class WidthEmbeddingsSession:
         else:
             raise Exception(f"Error performing inference: {status_resp.status_code} {status_resp.text}")
 
-    def follow_finetuning(self, finetune_id: str) -> bool:
+    def monitor_finetuning(self, finetune_id: str) -> bool:
         """
-        Wait to the finetuninng is done or failed.
+        Wait for the finetuning job to finish or error out
         """
         model_status = self.check_status(finetune_id=finetune_id)
         while model_status.get("status", "done") != "done":
-            logging.info(model_status)
+            self.logger.info(model_status)
             time.sleep(2)
             model_status = self.check_status(finetune_id=finetune_id)
             if model_status.get("status") == "error":
