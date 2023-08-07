@@ -209,7 +209,7 @@ class WidthEmbeddingsSession:
         if status_resp.ok:
             return status_resp.json()
         else:
-            raise Exception(f"Error performing inference: {status_resp.status_code} {status_resp.text}")
+            raise Exception(f"Error checking status of finetuning job: {status_resp.status_code} {status_resp.text}")
 
     def monitor_finetuning(self, finetune_id: str) -> bool:
         """
@@ -266,7 +266,7 @@ class WidthEmbeddingsSession:
         )
 
         if inference_resp.ok:
-            return inference_resp.json()
+            return inference_resp.json()["results"]["embeddings"]
         else:
             raise Exception(f"Error performing inference: {inference_resp.status_code} {inference_resp.text}")
 
