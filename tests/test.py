@@ -1,4 +1,3 @@
-import time
 from embeddings_sdk import WidthEmbeddingsSession
 
 # Get these values from onboarding through website
@@ -80,10 +79,13 @@ embeddings = session.inference(model_id=model_info.get("id"), model_version_id=f
                                input_texts=["shrimp poboy", "candy cane"])
 
 # and then when you are finished running your inferences make sure to tear down your resources
-session.tear_down(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
+if input("tear down stack? [Y/n] ") == "Y":
+    session.tear_down(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
 
 # if you want to delete a model version
-session.delete_model_version(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
+if input("delete model version? [Y/n] ") == "Y":
+    session.delete_model_version(model_id=model_info.get("id"), model_version_id=finetune_info.get("model_version_id"))
 
 # and if you want to delete a model
-session.delete_model(model_id=model_info.get("id"))
+if input("delete model? [Y/n] ") == "Y":
+    session.delete_model(model_id=model_info.get("id"))
