@@ -2,12 +2,12 @@ import json
 import requests
 import time
 from typing import List, Any
-from embeddings_sdk.domain import exceptions, models
-from embeddings_sdk.utils.utils import setup_logger
+from word_embeddings_sdk.domain import exceptions, models
+from word_embeddings_sdk.utils.utils import setup_logger
 
 
-class WidthEmbeddingsSession:
-    def __init__(self, customer_id: str, api_key: str, url: str = "https://api.example.com"):
+class WordEmbeddingsSession:
+    def __init__(self, customer_id: str, api_key: str, url: str = "https://wordembeddings.ai"):
         self.logger = setup_logger(__name__)
         self.api_url = url
         self.customer_id = customer_id
