@@ -1,1 +1,0 @@
-from word_embeddings_sdk.api.session import WordEmbeddingsSession
