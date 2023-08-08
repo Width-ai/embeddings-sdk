@@ -1,1 +1,0 @@
-from .api.session import WidthEmbeddingsSession

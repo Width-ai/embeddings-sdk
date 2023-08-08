@@ -1,4 +1,4 @@
-from embeddings_sdk import WidthEmbeddingsSession
+from word_embeddings_sdk import WordEmbeddingsSession
 
 # Get these values from onboarding through website
 customer_id = ""
@@ -7,7 +7,7 @@ api_key = ""
 host_url = ""
 
 # set up your session and create a new model
-session = WidthEmbeddingsSession(customer_id=customer_id, api_key=api_key, url=host_url)
+session = WordEmbeddingsSession(customer_id=customer_id, api_key=api_key, url=host_url)
 create_model_resp = session.create_model(model_name="testing model")
 
 # get model info
