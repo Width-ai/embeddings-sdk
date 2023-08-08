@@ -15,7 +15,7 @@ install_requires = parse_requirements('requirements.txt')
 setup(
     name='word_embeddings_sdk',
     packages=find_packages(),
-    version='0.1.2',
+    version='0.1.3',
     license='MIT',
     description='Python sdk to interface with the WordEmbeddings API',
     long_description=readme,
@@ -23,7 +23,7 @@ setup(
     author='Patrick Hennis',
     author_email='patrick@width.ai',
     url='https://github.com/Width-ai/embeddings-sdk',
-    download_url='https://github.com/Width-ai/embeddings-sdk/archive/refs/tags/v0.1.2.tar.gz',
+    download_url='https://github.com/Width-ai/embeddings-sdk/archive/refs/tags/v0.1.3.tar.gz',
     keywords=['Embeddings', 'SDK', 'WordEmbeddings', 'WordEmbeddings.Ai'],
     install_requires=install_requires,
     classifiers=[
